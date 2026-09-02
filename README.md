@@ -78,7 +78,7 @@ The codebase is organized into sequential execution steps, core utility modules,
 reproducibility. File names and dictionary keys follow strict CamelCase conventions.
 
 ```text
-├── Experiments/                  # Output directory for all experimental results.
+├── Experiments/                    # Output directory for all experimental results.
 ├── utils/                          # Pipeline-specific utility modules.
 │   ├── DatasetHelpers.py           # Data loading, preprocessing, and metadata dictionary mapping.
 │   ├── Handler.py                  # Training orchestration, evaluation, and missingness ablation.
