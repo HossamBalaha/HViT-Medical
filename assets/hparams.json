@@ -1,0 +1,300 @@
+[
+  {
+    "Name": "Preset_01_Tiny",
+    "Active": false,
+    "PatchSize": 8,
+    "HiddenSize": 132,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 4,
+    "IntermediateSize": 512,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 5e-4,
+      "weight_decay": 0.01,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-6
+    }
+  },
+  {
+    "Name": "Preset_02_Small",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 258,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 6,
+    "IntermediateSize": 1024,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 1e-4,
+      "weight_decay": 0.01,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-6
+    }
+  },
+  {
+    "Name": "Preset_03_Small-v2",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 324,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 6,
+    "IntermediateSize": 1280,
+    "HiddenDropoutProb": 0.12,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "Adam",
+    "OptimizerParams": {
+      "lr": 2e-4,
+      "weight_decay": 0.0,
+      "eps": 1e-8
+    },
+    "Scheduler": "StepLR",
+    "SchedulerParams": {
+      "step_size": 20,
+      "gamma": 0.5
+    }
+  },
+  {
+    "Name": "Preset_04_Medium",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 516,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 8,
+    "IntermediateSize": 2048,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 1e-4,
+      "weight_decay": 0.01,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-6
+    }
+  },
+  {
+    "Name": "Preset_05_Medium-v2",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 642,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 8,
+    "IntermediateSize": 2560,
+    "HiddenDropoutProb": 0.15,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "SGD",
+    "OptimizerParams": {
+      "lr": 5e-3,
+      "weight_decay": 0.0005,
+      "momentum": 0.9
+    },
+    "Scheduler": "StepLR",
+    "SchedulerParams": {
+      "step_size": 15,
+      "gamma": 0.8
+    }
+  },
+  {
+    "Name": "Preset_06_Base",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 768,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 12,
+    "IntermediateSize": 3072,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 3e-4,
+      "weight_decay": 0.05,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-6
+    }
+  },
+  {
+    "Name": "Preset_07_Base-v2",
+    "Active": true,
+    "PatchSize": 16,
+    "HiddenSize": 834,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 12,
+    "IntermediateSize": 3328,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.12,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "RMSprop",
+    "OptimizerParams": {
+      "lr": 1e-4,
+      "alpha": 0.99,
+      "weight_decay": 0.0
+    },
+    "Scheduler": "ExponentialLR",
+    "SchedulerParams": {
+      "gamma": 0.98
+    }
+  },
+  {
+    "Name": "Preset_08_Large",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 1026,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 16,
+    "IntermediateSize": 4096,
+    "HiddenDropoutProb": 0.1,
+    "AttentionProbsDropoutProb": 0.1,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 4e-4,
+      "weight_decay": 0.02,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-6
+    }
+  },
+  {
+    "Name": "Preset_09_Experimental",
+    "Active": false,
+    "PatchSize": 32,
+    "HiddenSize": 516,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 10,
+    "IntermediateSize": 2048,
+    "HiddenDropoutProb": 0.2,
+    "AttentionProbsDropoutProb": 0.2,
+    "QkvBias": false,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 8e-5,
+      "weight_decay": 0.01,
+      "eps": 1e-8
+    },
+    "Scheduler": "StepLR",
+    "SchedulerParams": {
+      "step_size": 10,
+      "gamma": 0.7
+    }
+  },
+  {
+    "Name": "Preset_10_Regularized",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 516,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 8,
+    "IntermediateSize": 2048,
+    "HiddenDropoutProb": 0.3,
+    "AttentionProbsDropoutProb": 0.25,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "AdamW",
+    "OptimizerParams": {
+      "lr": 5e-5,
+      "weight_decay": 0.1,
+      "eps": 1e-8
+    },
+    "Scheduler": "CosineAnnealingLR",
+    "SchedulerParams": {
+      "T_max": "EPOCHS",
+      "eta_min": 1e-7
+    }
+  },
+  {
+    "Name": "Preset_11_Fast",
+    "Active": false,
+    "PatchSize": 16,
+    "HiddenSize": 384,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 6,
+    "IntermediateSize": 1536,
+    "HiddenDropoutProb": 0.05,
+    "AttentionProbsDropoutProb": 0.05,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "SGD",
+    "OptimizerParams": {
+      "lr": 1e-2,
+      "weight_decay": 0.0001,
+      "momentum": 0.9
+    },
+    "Scheduler": "StepLR",
+    "SchedulerParams": {
+      "step_size": 5,
+      "gamma": 0.9
+    }
+  },
+  {
+    "Name": "Preset_12_Robust",
+    "Active": false,
+    "PatchSize": 8,
+    "HiddenSize": 516,
+    "NumAttentionHeads": 6,
+    "NumHiddenLayers": 10,
+    "IntermediateSize": 2048,
+    "HiddenDropoutProb": 0.2,
+    "AttentionProbsDropoutProb": 0.15,
+    "QkvBias": true,
+    "InitializerRange": 0.02,
+    "MustCuda": true,
+    "Optimizer": "Adam",
+    "OptimizerParams": {
+      "lr": 2e-4,
+      "weight_decay": 0.01,
+      "eps": 1e-8
+    },
+    "Scheduler": "ExponentialLR",
+    "SchedulerParams": {
+      "gamma": 0.99
+    }
+  }
+]
