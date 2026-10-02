@@ -93,8 +93,8 @@ The package can be installed via PyPI and its source code and documentation are 
 
 * **PyPI**: [https://pypi.org/project/hmb-helpers/](https://pypi.org/project/hmb-helpers/)
 * **Documentation**: [https://hmb-helpers-package.readthedocs.io/](https://hmb-helpers-package.readthedocs.io/)
-* **GitHub Repository
-  **: [https://github.com/HossamBalaha/HMB-Helpers-Package](https://github.com/HossamBalaha/HMB-Helpers-Package)
+* **GitHub Repository**: 
+  [https://github.com/HossamBalaha/HMB-Helpers-Package](https://github.com/HossamBalaha/HMB-Helpers-Package)
 
 Key modules utilized from this package include:
 
