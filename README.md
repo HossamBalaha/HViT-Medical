@@ -1,11 +1,51 @@
 # Q-Conditioning and Q-Gating: Metadata-Driven Attention Mechanisms for Medical Vision Transformers
 
-![Status](https://img.shields.io/badge/Status-Under%20Review-yellow)
+![Status](https://img.shields.io/badge/Status-Published-green)
 ![Journal](https://img.shields.io/badge/Journal-Information%20(MDPI)-blue)
 ![Special Issue](https://img.shields.io/badge/Special%20Issue-Advanced%20Neural%20Architectures-lightgrey)
 ![Python](https://img.shields.io/badge/Python-3.10-green)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.7-red)
 ![HMB-Helpers](https://img.shields.io/badge/HMB--Helpers-PyPI-orange)
+
+## Publication Details
+
+* **Journal**: Information (MDPI)
+* **Volume/Issue**: 2026, 17(10), 973
+* **DOI**: [https://doi.org/10.3390/info17100973](https://doi.org/10.3390/info17100973)
+* **Special Issue**: Advanced Neural Architectures for Multimodal Understanding and Generation
+* **Academic Editors**: Gerasimos Vonitsanos, John Garofalakis
+* **Publication History**: Received: 16 July 2026 | Revised: 19 September 2026 | Accepted: 25 September 2026 |
+  Published: 1 October 2026
+
+## Abstract
+
+**Background**: Vision Transformers (ViTs) have demonstrated efficacy in visual recognition tasks through global
+dependency modeling via self-attention. However, standard ViT architectures lack native mechanisms for integrating
+external clinical metadata (e.g., patient demographics, lesion characteristics, image quality indicators) into the
+visual processing pipeline, limiting their utility in multi-modal diagnostic scenarios.
+
+**Methods**: We propose two novel attention mechanisms: Q-Conditioning and Q-Gating, designed for efficient metadata
+fusion within the transformer framework. In Q-Conditioning, metadata is projected into the query space and added to the
+query vector, guiding attention toward contextually relevant regions during early computation. In Q-Gating, a learned
+gate modulates computed attention scores, enabling soft, differentiable control over token interactions. We further
+introduce a hybrid attention framework wherein standard, Q-Conditioning, and Q-Gating heads coexist within the same
+model.
+
+**Results**: We evaluated our approach on four medical imaging benchmarks (PAD-UFES-20, TissueNet, PH², and NDB-UFES).
+Specific configurations, particularly Q-Gating and hybrid variants (e.g., QC_QG, QG_S), achieved >95.5% accuracy on
+PAD-UFES-20 and >92% average score on PH², significantly outperforming image-only baseline models (p<0.001). On
+TissueNet, where auxiliary inputs consist of PhikonV2 foundation-model embeddings rather than raw clinical metadata, all
+configurations exceeded 99% accuracy; however, we note that these gains are substantially attributable to the pretrained
+encoder and are reported separately from the primary clinical-metadata claims. Attention concentration metrics,
+encompassing both theoretical conditional entropy reduction and empirical absolute entropy dispersion, correlated
+strongly with diagnostic performance gains (ρ=0.89), indicating improved focus on diagnostically salient regions while
+avoiding spurious attention collapse.
+
+**Conclusions**: Metadata-aware attention mechanisms enhance both performance and interpretability in domains where
+auxiliary information is critical. This work provides a scalable extension to ViTs that supports multi-input modeling
+while preserving architectural integrity and computational efficiency.
+
+**Keywords**: attention mechanisms; medical image analysis; metadata integration; vision transformers (ViTs)
 
 ## Overview
 
@@ -14,19 +54,22 @@ metadata, which limits their utility in multi-modal diagnostic scenarios. This r
 implementation of **Q-Conditioning** and **Q-Gating**. These novel attention mechanisms integrate metadata directly into
 the transformer framework to guide spatial attention and modulate token dependencies.
 
-* **Q-Conditioning** projects metadata into the query space. It adds the projection to the query vector to direct
+* **Q-Conditioning**: Projects metadata into the query space. It adds the projection to the query vector to direct
   attention to contextually relevant regions during early computation.
-* **Q-Gating** uses a learned gate derived from query-metadata interactions. It modulates computed attention scores via
+* **Q-Gating**: Uses a learned gate derived from query-metadata interactions. It modulates computed attention scores via
   a sigmoid activation to allow soft control over token dependencies.
-* **Hybrid Attention Framework** permits standard, Q-Conditioning, and Q-Gating heads to coexist within the same
+* **Hybrid Attention Framework**: Permits standard, Q-Conditioning, and Q-Gating heads to coexist within the same
   multi-head attention block via explicit head-type allocation.
 
 ## Authors
 
-* **Hossam Magdy Balaha** (Bioengineering Department, University of Louisville; Computer Science and Systems Department,
-  Mansoura University)
-* **Ahmed Sharafeldeen** (Computer Science and Engineering Department, University of Louisville)
-* **Magdy Hassan Balaha** (Department of Obstetrics and Gynecology, Tanta University)
+* **Hossam Magdy Balaha** (Bioengineering Department, J.B. Speed School of Engineering, University of Louisville,
+  Louisville, KY 40292, USA; Computer Science and Systems Department, Faculty of Engineering, Mansoura University,
+  Mansoura 35516, Egypt)
+* **Ahmed Sharafeldeen** (Mathematics and Computer Science Department, Louisiana State University of Alexandria,
+  Alexandria, LA 71302, USA)
+* **Magdy Hassan Balaha** (Department of Obstetrics and Gynecology, Faculty of Medicine, Tanta University, Tanta 31527,
+  Egypt)
 
 ## Key Contributions
 
@@ -50,7 +93,8 @@ The package can be installed via PyPI and its source code and documentation are 
 
 * **PyPI**: [https://pypi.org/project/hmb-helpers/](https://pypi.org/project/hmb-helpers/)
 * **Documentation**: [https://hmb-helpers-package.readthedocs.io/](https://hmb-helpers-package.readthedocs.io/)
-* **GitHub Repository**: [https://github.com/HossamBalaha/HMB-Helpers-Package](https://github.com/HossamBalaha/HMB-Helpers-Package)
+* **GitHub Repository
+  **: [https://github.com/HossamBalaha/HMB-Helpers-Package](https://github.com/HossamBalaha/HMB-Helpers-Package)
 
 Key modules utilized from this package include:
 
@@ -217,14 +261,14 @@ flag. The pipeline will iterate through all active presets during Step 1.
     "InitializerRange": 0.02,
     "Optimizer": "AdamW",
     "OptimizerParams": {
-      "lr": 0.0003,
-      "weight_decay": 0.05,
-      "eps": 1e-8
+      "LearningRate": 0.0003,
+      "WeightDecay": 0.05,
+      "Epsilon": 1e-8
     },
     "Scheduler": "CosineAnnealingLR",
     "SchedulerParams": {
-      "T_max": "EPOCHS",
-      "eta_min": 1e-6
+      "TMax": "EPOCHS",
+      "EtaMin": 1e-6
     }
   }
 ]
@@ -239,7 +283,7 @@ import json
 
 # Define a function to parse the hyperparameter presets.
 def ParseHParams(filePath):
-  # Open the JSON file in read mode using double quotes.
+  # Open the JSON file in read mode.
   with open(filePath, "r") as fileObject:
     # Load the JSON data into a list of dictionaries.
     presetsList = json.load(fileObject)
@@ -494,24 +538,20 @@ import torch
 def ApplyMetadataMissingness(metadataTensor, missingnessRate, missingnessMode):
   # Clone the metadata tensor to avoid modifying the original data.
   corruptedTensor = metadataTensor.clone()
-
   # Check if the missingness rate is greater than zero.
   if (missingnessRate > 0.0):
     # Generate a random boolean mask based on the missingness rate.
     missingnessMask = torch.rand(corruptedTensor.size()) < missingnessRate
-
     # Check if the replacement mode is set to zero.
     if (missingnessMode == "Zero"):
       # Fill the masked entries with zero values.
       corruptedTensor = corruptedTensor.masked_fill(missingnessMask, 0.0)
-
     # Check if the replacement mode is set to mean.
     elif (missingnessMode == "Mean"):
       # Compute the mean value across the batch dimension.
       batchMean = corruptedTensor.mean(dim=0, keepdim=True)
       # Replace the masked entries with the computed batch mean.
       corruptedTensor = torch.where(missingnessMask, batchMean, corruptedTensor)
-
   # Return the corrupted metadata tensor.
   return corruptedTensor
 ```
@@ -531,47 +571,44 @@ import torch
 def ExtractClsToPatchesAttention(allAttentions, layerIndex, aggregateHeads):
   # Select the requested layer attentions from the provided list.
   attentionTensor = allAttentions[layerIndex]
-
   # Check if the attention object is a NumPy array.
   if (isinstance(attentionTensor, np.ndarray)):
     # Convert the NumPy array to a PyTorch tensor.
     attentionTensor = torch.from_numpy(attentionTensor)
-
   # Extract the CLS token row to patch tokens.
   clsToPatches = attentionTensor[:, :, 0, 1:]
-
   # Check if the aggregation method is set to mean.
   if (aggregateHeads == "Mean"):
     # Compute the mean across the head dimension.
     attentionVector = clsToPatches.mean(dim=1)
-
   # Check if the aggregation method is set to sum.
   elif (aggregateHeads == "Sum"):
     # Compute the sum across the head dimension.
     attentionVector = clsToPatches.sum(dim=1)
-
   # Convert the tensor to a NumPy array on the CPU.
   attentionVector = attentionVector.cpu().numpy()
-
   # Normalize each sample attention vector to sum to one.
   attentionVector = attentionVector / (attentionVector.sum(axis=1, keepdims=True) + 1e-12)
-
   # Return the normalized attention vectors.
   return attentionVector
 ```
 
 ## Citation
 
-If you use this code or our findings in your research, please cite our manuscript once it is published.
+If you use this code or our findings in your research, please cite our published manuscript.
 
 ```bibtex
 @article{balaha2026qconditioning,
-  title={Q-Conditioning and Q-Gating: Metadata-Driven Attention Mechanisms for Medical Vision Transformers},
-  author={Balaha, Hossam Magdy and Sharafeldeen, Ahmed and Balaha, Magdy Hassan},
-  journal={Information},
-  year={2026},
-  publisher={MDPI},
-  note={Special Issue: Advanced Neural Architectures for Multimodal Understanding and Generation}
+    title = {Q-Conditioning and Q-Gating: Metadata-Driven Attention Mechanisms for Medical Vision Transformers},
+    author = {Balaha, Hossam Magdy and Sharafeldeen, Ahmed and Balaha, Magdy Hassan},
+    journal = {Information},
+    volume = {17},
+    number = {10},
+    pages = {973},
+    year = {2026},
+    publisher = {MDPI},
+    doi = {10.3390/info17100973},
+    note = {Special Issue: Advanced Neural Architectures for Multimodal Understanding and Generation}
 }
 ```
 
